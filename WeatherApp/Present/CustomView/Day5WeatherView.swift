@@ -40,6 +40,7 @@ struct HorizontalWeatherCell: View {
                 Image(weather.weatherIcon)
                     .resizable()
                     .frame(width: 32, height: 32)
+                    .aspectRatio(contentMode: .fill)
                 Spacer()
                 Text("최소: \(weather.temp_min)°     최대: \(weather.temp_max)°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo)
             }

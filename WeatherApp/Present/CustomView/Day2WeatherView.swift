@@ -51,6 +51,7 @@ struct VerticalWeatherCell: View {
             Image(weather.weatherIcon)
                 .resizable()
                 .frame(width: 25, height: 25)
+                .aspectRatio(contentMode: .fill)
             Text("\(weather.temp)°").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
         }
         .frame(maxWidth: 80)

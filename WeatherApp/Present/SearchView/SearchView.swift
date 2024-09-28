@@ -21,24 +21,28 @@ struct SearchView: View {
                     Spacer().frame(height: 24)
                     WeatherSearchBar(text: $viewModel.query, tfInactive: false)
                     Spacer().frame(height: 16)
-                    ScrollView() {
-                        LazyVStack {
-                            ForEach(viewModel.state.cityList, id: \.id) { city in
-                                CityCell(city: city)
-                                    .onTapGesture {
-                                        print("지금 클릭한 도시 \(city.name)")
-                                        weatherViewModel.nowCity = city
-                                        dismiss()
-                                    }
-                                    .onAppear {
-                                        if city == viewModel.state.cityList.last {
-                                            viewModel.dispatch(intent: .loadMore)
+                    if !viewModel.state.cityList.isEmpty {
+                        ScrollView() {
+                            LazyVStack {
+                                ForEach(viewModel.state.cityList, id: \.id) { city in
+                                    CityCell(city: city)
+                                        .onTapGesture {
+                                            print("지금 클릭한 도시 \(city.name)")
+                                            weatherViewModel.nowCity = city
+                                            dismiss()
                                         }
-                                    }
+                                        .onAppear {
+                                            if city == viewModel.state.cityList.last {
+                                                viewModel.dispatch(intent: .loadMore)
+                                            }
+                                        }
+                                }
                             }
                         }
+                        .scrollIndicators(.hidden)
+                    } else {
+                        NoResultView()
                     }
-                    .scrollIndicators(.hidden)
                 }
                 .padding(.horizontal, Padding.weatherHorizontalPadding)
             }
