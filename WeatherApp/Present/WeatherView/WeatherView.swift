@@ -10,7 +10,11 @@ import SwiftUI
 struct WeatherView: View {
     
     @StateObject private var viewModel = WeatherViewModel()
+    @State private var networkMonitor = NetworkMonitor()
+    
     var body: some View {
+            
+        if networkMonitor.isConnected {
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()
@@ -45,6 +49,9 @@ struct WeatherView: View {
             .task {
                 viewModel.dispatch(intent: .loadCityWeather)
             }
+        } else {
+            NetworkDisconnectView()
+        }
         
     }
 }
