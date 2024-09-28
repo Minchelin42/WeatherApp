@@ -127,7 +127,11 @@ final class WeatherViewModel: ObservableObject {
         }
         
         for index in 0..<day2WeatherForecast.count {
-            day2WeatherForecast[index].date = convertDateFormat(input: day2WeatherForecast[index].date)
+            if index == 0 {
+                day2WeatherForecast[index].date = "지금"
+            } else {
+                day2WeatherForecast[index].date = convertDateFormat(input: day2WeatherForecast[index].date)
+            }
         }
         
         DispatchQueue.main.async {
@@ -183,7 +187,7 @@ final class WeatherViewModel: ObservableObject {
         dateFormatter.dateFormat = "a h"
         dateFormatter.locale = Locale(identifier: "ko_KR")
  
-        return dateFormatter.string(from: date) ?? ""
+        return "\(dateFormatter.string(from: date))시" ?? ""
     }
     
     func convertDateFormatToDay(input: String) -> String {

@@ -12,7 +12,7 @@ struct WeatherMapView: View {
         VStack(alignment: .leading) {
             Spacer().frame(height: Padding.weatherHorizontalPadding)
             HStack {
-                Text("강수량").setTextTitleStyle(size: Fonts.weatherCellSub)
+                Text("위치").setTextTitleStyle(size: Fonts.weatherCellSub)
                 Spacer()
             }
             Spacer()

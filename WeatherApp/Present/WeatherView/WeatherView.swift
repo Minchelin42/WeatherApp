@@ -21,7 +21,7 @@ struct WeatherView: View {
                         WeatherSearchBar(tfInactive: true)
                             .contentShape(Rectangle())
                             .sheet(isPresented: $viewModel.state.searchPresent, content: {
-                                SearchView()
+                                SearchView(weatherViewModel: viewModel)
                             })
                             .onTapGesture {
                                 print("searchBar Click")

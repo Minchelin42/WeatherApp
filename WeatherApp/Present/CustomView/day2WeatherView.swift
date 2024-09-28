@@ -47,7 +47,7 @@ struct VerticalWeatherCell: View {
     
     var body: some View {
         VStack(spacing: 3) {
-            Text("\(weather.date)시").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
+            Text("\(weather.date)").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
             Image(weather.weatherIcon)
                 .resizable()
                 .frame(width: 25, height: 25)

@@ -17,7 +17,6 @@ enum SearchIntetnt {
     case loadAllCity
     case loadMore
     case searchCity(query: String)
-    case selectCity(city: City)
 }
 
 @MainActor
@@ -29,13 +28,12 @@ final class SearchViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    var router: Router = Router()
     var allCityList: [City] = []
     var loadCityList: [City] = []
     
     var currPage = 0
     var defaultCnt = 30
-    
+
     init() {
         dispatch(intent: .loadInitCity)
         searchQuerySetting()
@@ -51,9 +49,6 @@ final class SearchViewModel: ObservableObject {
             loadMoreCities()
         case .searchCity(let query):
             filterCities(with: query)
-        case .selectCity(let city):
-            selectCity = city
-            selectedCity()
         }
     }
     
@@ -142,8 +137,5 @@ final class SearchViewModel: ObservableObject {
               }
               .store(in: &cancellables)
     }
-    
-    private func selectedCity() {
-        self.router.pop()
-    }
+
 }

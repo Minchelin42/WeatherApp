@@ -10,9 +10,10 @@ import SwiftUI
 struct SearchView: View {
     
     @StateObject private var viewModel = SearchViewModel()
+    @ObservedObject var weatherViewModel: WeatherViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack(path: $viewModel.router.route) {
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()
@@ -25,7 +26,9 @@ struct SearchView: View {
                             ForEach(viewModel.state.cityList, id: \.id) { city in
                                 CityCell(city: city)
                                     .onTapGesture {
-                                        viewModel.dispatch(intent: .selectCity(city: city))
+                                        weatherViewModel.nowCity = city
+                                        weatherViewModel.dispatch(intent: .loadCityWeather)
+                                        dismiss()
                                     }
                                     .onAppear {
                                         if city == viewModel.state.cityList.last {
@@ -39,7 +42,6 @@ struct SearchView: View {
                 }
                 .padding(.horizontal, Padding.weatherHorizontalPadding)
             }
-        }
 
     }
 }
