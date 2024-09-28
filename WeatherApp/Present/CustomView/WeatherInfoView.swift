@@ -9,17 +9,19 @@ import SwiftUI
 
 struct WeatherInfoView: View {
     
+    var weather: TodayWeatherModel
+
     var body: some View {
         VStack(spacing: 6) {
-            Text("Seoul").setTextTitleStyle(size: Fonts.userPlace)
-            Text("-7").setTextTitleStyle(size: Fonts.userTemperature)
-            Text("맑음").setTextTitleStyle(size: Fonts.userWeather)
-            Text("최고: -1 | 최저: -11").setTextTitleStyle(size: Fonts.userTempRange)
+            Text(weather.city).setTextTitleStyle(size: Fonts.userPlace)
+            Text("\(weather.temp)°").setTextTitleStyle(size: Fonts.userTemperature)
+            Text(weather.description).setTextTitleStyle(size: Fonts.userWeather)
+            Text("최고: \(weather.temp_max)° | 최저: \(weather.temp_min)°").setTextTitleStyle(size: Fonts.userTempRange)
         }
         .padding(.vertical, Padding.weatherHorizontalPadding)
     }
 }
 
-#Preview {
-    WeatherInfoView()
-}
+//#Preview {
+//    WeatherInfoView()
+//}

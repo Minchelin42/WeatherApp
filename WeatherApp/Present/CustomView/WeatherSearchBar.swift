@@ -10,6 +10,12 @@ import SwiftUI
 struct WeatherSearchBar: View {
     
     @Binding var text: String
+    var tfInactive: Bool
+    
+    init(text: Binding<String> = .constant(""), tfInactive: Bool) {
+        self._text = text
+        self.tfInactive = tfInactive
+    }
     
     var body: some View {
         HStack {
@@ -17,6 +23,7 @@ struct WeatherSearchBar: View {
             AppImage.searchImg.foregroundColor(Color.grayFont)
             TextField("도시명으로 검색", text: $text)
             .frame(height: 36)
+            .disabled(tfInactive)
         }
         .setBackgroundStyle(color: Color.searchColor, cornerRadius: 8, height: 36)
     }
