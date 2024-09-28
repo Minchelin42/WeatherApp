@@ -41,22 +41,10 @@ final class SearchViewModel: ObservableObject {
         searchQuerySetting()
     }
     
-    private func searchQuerySetting() {
-        $query
-              .debounce(for: .seconds(0.5), scheduler: RunLoop.main)  // 0.5초 동안 입력이 없으면 실행
-              .removeDuplicates()
-              .sink { [weak self] newQuery in
-                  guard let self = self else { return }
-                  self.dispatch(intent: .searchCity(query: newQuery))
-              }
-              .store(in: &cancellables)
-    }
-    
-    @MainActor func dispatch(intent: SearchIntetnt) {
+    func dispatch(intent: SearchIntetnt) {
         switch intent {
         case .loadInitCity:
             loadInitCities()
-            dump(state.cityList)
         case .loadAllCity:
             loadAllCities()
         case .loadMore:
@@ -144,7 +132,18 @@ final class SearchViewModel: ObservableObject {
         }
     }
     
-    @MainActor private func selectedCity() {
+    private func searchQuerySetting() {
+        $query
+              .debounce(for: .seconds(0.5), scheduler: RunLoop.main)  // 0.5초 동안 입력이 없으면 실행
+              .removeDuplicates()
+              .sink { [weak self] newQuery in
+                  guard let self = self else { return }
+                  self.dispatch(intent: .searchCity(query: newQuery))
+              }
+              .store(in: &cancellables)
+    }
+    
+    private func selectedCity() {
         self.router.pop()
     }
 }

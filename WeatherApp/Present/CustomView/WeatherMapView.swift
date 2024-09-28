@@ -29,6 +29,6 @@ struct WeatherMapView: View {
     }
 }
 
-#Preview {
-    WeatherMapView()
-}
+//#Preview {
+//    WeatherMapView()
+//}

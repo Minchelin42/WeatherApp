@@ -17,7 +17,8 @@ struct SearchView: View {
                 Color.mainColor
                     .ignoresSafeArea()
                 VStack {
-                    WeatherSearchBar(text: $viewModel.query)
+                    Spacer().frame(height: 24)
+                    WeatherSearchBar(text: $viewModel.query, tfInactive: false)
                     Spacer().frame(height: 16)
                     ScrollView() {
                         LazyVStack {

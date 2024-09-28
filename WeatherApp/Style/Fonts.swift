@@ -13,9 +13,9 @@ enum Fonts {
     static let userWeather: CGFloat = 24
     static let userTempRange: CGFloat = 20
     
-    static let weatherCellTitle: CGFloat = 14
+    static let weatherCellTitle: CGFloat = 12
     static let weatherCellSub: CGFloat = 12
-    static let weatHerCell2DayInfo: CGFloat = 14
+    static let weatHerCell2DayInfo: CGFloat = 12
     static let weatherCell5DayInfo: CGFloat = 17
     
     static let etcCellInfo: CGFloat = 24

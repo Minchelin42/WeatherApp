@@ -21,20 +21,19 @@ struct Day2WeatherView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
-            Text("돌풍의 풍속은 최대 4m/s 입니다").setTextTitleStyle(size: Fonts.weatherCellTitle)
+            Text("시간대별 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
             seperateLine()
             ScrollView(.horizontal) {
-                HStack(spacing: 0) {
+                HStack(spacing: 2) {
                     ForEach(0..<10) { _ in
                         VerticalWeatherCell()
                     }
                 }
                 .frame(maxWidth: .infinity)
             }
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherHorizontalPadding)
         .setBackgroundStyle(color: Color.mainColor, cornerRadius: 14, height: 120)
 
     }
@@ -55,6 +54,6 @@ struct VerticalWeatherCell: View {
     }
 }
 
-#Preview {
-    Day2WeatherView()
-}
+//#Preview {
+//    Day2WeatherView()
+//}

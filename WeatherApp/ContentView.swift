@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var text: String = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        HStack {
+            Spacer().frame(width: 10)
+            AppImage.searchImg.foregroundColor(Color.grayFont)
+            TextField("도시명으로 검색", text: $text) {
+                
+            }
         }
-        .padding()
+        .setBackgroundStyle(color: Color.mainColor, cornerRadius: 14, height: 50)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(text: "")
 }
