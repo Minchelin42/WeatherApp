@@ -16,7 +16,7 @@ struct Day5WeatherView: View {
         VStack(alignment: .leading) {
             Spacer().frame(height: Padding.weatherHorizontalPadding)
             Text("5일간의 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
-            ForEach(day5Weather, id: \.self) { weather in
+            ForEach(day5Weather, id: \.id) { weather in
                 HorizontalWeatherCell(weather: weather)
             }
             Spacer().frame(height: Padding.weatherHorizontalPadding)

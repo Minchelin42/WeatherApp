@@ -26,8 +26,8 @@ struct SearchView: View {
                             ForEach(viewModel.state.cityList, id: \.id) { city in
                                 CityCell(city: city)
                                     .onTapGesture {
+                                        print("지금 클릭한 도시 \(city.name)")
                                         weatherViewModel.nowCity = city
-                                        weatherViewModel.dispatch(intent: .loadCityWeather)
                                         dismiss()
                                     }
                                     .onAppear {
@@ -60,7 +60,3 @@ struct CityCell: View {
         .contentShape(Rectangle())
     }
 }
-
-//#Preview {
-//    SearchView()
-//}

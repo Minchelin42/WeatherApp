@@ -27,7 +27,7 @@ struct Day2WeatherView: View {
             seperateLine()
             ScrollView(.horizontal) {
                 HStack(spacing: 2) {
-                    ForEach(day2Weather, id: \.self) { weather in
+                    ForEach(day2Weather, id: \.id) { weather in
                         VerticalWeatherCell(weather: weather)
                     }
                 }

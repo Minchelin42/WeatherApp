@@ -9,13 +9,14 @@ import Foundation
 import Combine
 
 struct WeatherState {
-    var nowWeather: TodayWeatherModel? = nil
+    var nowWeather: TodayWeatherModel = TodayWeatherModel(coord: Coordinates(lon: 0, lat: 0), city: "", temp: 0, temp_min: 0, temp_max: 0, description: "", windSpeed: 0, humidity: 0, clouds: 0)
     var threeHourWeather: [WeatherForecastModel] = []
     var fiveDayWeather: [minMaxWeatherInfo] = []
     var searchPresent: Bool = false
 }
 
 struct minMaxWeatherInfo: Hashable {
+    var id = UUID()
     var temp_min: Int //기온
     var temp_max: Int //기온
     var weatherIcon: String //날씨 이미지
@@ -62,22 +63,26 @@ final class WeatherViewModel: ObservableObject {
     }
     
     func loadCityWeather() {
-        NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
-            .receive(on: DispatchQueue.global())
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    print("Error loading weather: \(error.localizedDescription)")
-                case .finished:
-                    break
-                }
-            }, receiveValue: { [weak self] weather in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.state.nowWeather = weather.toDomain()
-                }
-            })
-            .store(in: &cancellables)
+        Task {
+            NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
+                .receive(on: DispatchQueue.global())
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print("Error loading weather: \(error.localizedDescription)")
+                    case .finished:
+                        break
+                    }
+                }, receiveValue: { [weak self] weather in
+                    guard let self = self else { return }
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.state.nowWeather = weather.toDomain()
+                        self.state.nowWeather.city = self.nowCity.name
+                    }
+                })
+                .store(in: &cancellables)
+        }
     }
     
     func loadDaysWeather() {

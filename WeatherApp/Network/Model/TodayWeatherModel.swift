@@ -8,13 +8,13 @@
 import Foundation
 
 struct TodayWeatherModel {
-    let coord: Coordinates
-    let city: String // name
-    let temp: Int
-    let temp_min: Int
-    let temp_max: Int
-    let description: String
-    let windSpeed: Double  //wind - speed
-    let humidity: Int // main - humidity
-    let clouds: Int //clouds - all
+    var coord: Coordinates
+    var city: String // name
+    var temp: Int
+    var temp_min: Int
+    var temp_max: Int
+    var description: String
+    var windSpeed: Double  //wind - speed
+    var humidity: Int // main - humidity
+    var clouds: Int //clouds - all
 }

@@ -11,7 +11,6 @@ struct WeatherView: View {
     
     @StateObject private var viewModel = WeatherViewModel()
     var body: some View {
-
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()
@@ -27,16 +26,13 @@ struct WeatherView: View {
                                 print("searchBar Click")
                                 viewModel.dispatch(intent: .searchCity)
                             }
-
-                        if let weather = viewModel.state.nowWeather {
-                            WeatherInfoView(weather: weather)
-                        }
+                        
+                        WeatherInfoView(weather: viewModel.state.nowWeather)
                         Day2WeatherView(day2Weather: viewModel.state.threeHourWeather)
                         Day5WeatherView(day5Weather: viewModel.state.fiveDayWeather)
-                        WeatherMapView()
-                        if let weather = viewModel.state.nowWeather {
-                            WeatherEtcView(weather: weather)
-                        }
+                        WeatherMapView(weather: viewModel.state.nowWeather)
+                        WeatherEtcView(weather: viewModel.state.nowWeather)
+                        
                     }
                     .padding(.horizontal, Padding.weatherHorizontalPadding)
                     .frame(maxHeight: .infinity)
