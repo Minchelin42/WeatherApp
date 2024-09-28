@@ -19,14 +19,16 @@ struct seperateLine: View {
 
 struct Day2WeatherView: View {
     
+    var day2Weather: [WeatherForecastModel]
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("시간대별 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
             seperateLine()
             ScrollView(.horizontal) {
                 HStack(spacing: 2) {
-                    ForEach(0..<10) { _ in
-                        VerticalWeatherCell()
+                    ForEach(day2Weather, id: \.self) { weather in
+                        VerticalWeatherCell(weather: weather)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -41,13 +43,15 @@ struct Day2WeatherView: View {
 
 struct VerticalWeatherCell: View {
     
+    var weather: WeatherForecastModel
+    
     var body: some View {
         VStack(spacing: 3) {
-            Text("오후 12시").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
-            Image("01d")
+            Text("\(weather.date)시").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
+            Image(weather.weatherIcon)
                 .resizable()
                 .frame(width: 25, height: 25)
-            Text("-1°").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
+            Text("\(weather.temp)°").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
         }
         .frame(maxWidth: 80)
         .padding(.horizontal, 8)

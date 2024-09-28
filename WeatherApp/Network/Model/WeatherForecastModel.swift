@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeatherForecastModel {
+struct WeatherForecastModel: Hashable {
     var temp: Int //기온
     var weatherIcon: String //날씨 이미지
     var date: String //날짜

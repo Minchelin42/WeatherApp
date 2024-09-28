@@ -31,21 +31,22 @@ struct WeatherView: View {
                         if let weather = viewModel.state.nowWeather {
                             WeatherInfoView(weather: weather)
                         }
-                        
-                        Day2WeatherView()
-                        Day5WeatherView()
+                        Day2WeatherView(day2Weather: viewModel.state.threeHourWeather)
+                        Day5WeatherView(day5Weather: viewModel.state.fiveDayWeather)
                         WeatherMapView()
-                        WeatherEtcView()
+                        if let weather = viewModel.state.nowWeather {
+                            WeatherEtcView(weather: weather)
+                        }
                     }
                     .padding(.horizontal, Padding.weatherHorizontalPadding)
                     .frame(maxHeight: .infinity)
                 }
                 .scrollIndicators(.hidden)
             }
+            .task {
+                viewModel.dispatch(intent: .loadCityWeather)
+            }
         
     }
 }
 
-//#Preview {
-//    WeatherView()
-//}

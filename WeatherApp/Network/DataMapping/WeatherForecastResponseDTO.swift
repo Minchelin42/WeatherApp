@@ -13,7 +13,7 @@ struct WeatherForecastResponseDTO: ResponseDTOType {
 
 struct WeatherForecast: Codable, Equatable {
     var main: MainInfo //main - temp
-    var weather: Weather //weather - icon
+    var weather: [Weather] //weather - icon
     var dt_txt: String //date
 }
 
@@ -24,8 +24,11 @@ extension WeatherForecastResponseDTO {
         for weather in self.list {
             
             let celsiusTemp = Int(weather.main.temp - 273.15)
+            var weatherIcon = weather.weather.first?.icon ?? ""
+
+            weatherIcon = weatherIcon.replacingOccurrences(of: "n", with: "d")
             
-            result.append(WeatherForecastModel(temp: celsiusTemp, weatherIcon: weather.weather.icon, date: weather.dt_txt))
+            result.append(WeatherForecastModel(temp: celsiusTemp, weatherIcon: weatherIcon, date: weather.dt_txt))
         }
         
         return result

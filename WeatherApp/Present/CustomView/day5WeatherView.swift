@@ -10,12 +10,14 @@ import SwiftUI
 
 struct Day5WeatherView: View {
     
+    var day5Weather: [minMaxWeatherInfo]
+    
     var body: some View {
         VStack(alignment: .leading) {
             Spacer().frame(height: Padding.weatherHorizontalPadding)
             Text("5일간의 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
-            ForEach(0..<5) { _ in
-                HorizontalWeatherCell()
+            ForEach(day5Weather, id: \.self) { weather in
+                HorizontalWeatherCell(weather: weather)
             }
             Spacer().frame(height: Padding.weatherHorizontalPadding)
         }
@@ -26,24 +28,26 @@ struct Day5WeatherView: View {
 
 struct HorizontalWeatherCell: View {
     
+    var weather: minMaxWeatherInfo
+    
     var body: some View {
         
         VStack {
             seperateLine()
             HStack(spacing: 3) {
-                Text("지금").setTextTitleStyle(size: Fonts.weatherCell5DayInfo)
+                Text(weather.day).setTextTitleStyle(size: Fonts.weatherCell5DayInfo).frame(width: 32, alignment: .leading)
                 Spacer()
-                Image("01d")
+                Image(weather.weatherIcon)
                     .resizable()
-                    .frame(width: 25, height: 25)
+                    .frame(width: 32, height: 32)
                 Spacer()
-                Text("최소: -1°  최대: -7°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo)
+                Text("최소: \(weather.temp_min)°     최대: \(weather.temp_max)°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo)
             }
         }
 
     }
 }
 
-#Preview {
-    Day5WeatherView()
-}
+//#Preview {
+//    Day5WeatherView()
+//}

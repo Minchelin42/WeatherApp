@@ -12,7 +12,7 @@ struct WeatherInfoView: View {
     var weather: TodayWeatherModel
 
     var body: some View {
-        VStack(spacing: 6) {
+        VStack(alignment: .center, spacing: 6) {
             Text(weather.city).setTextTitleStyle(size: Fonts.userPlace)
             Text("\(weather.temp)°").setTextTitleStyle(size: Fonts.userTemperature)
             Text(weather.description).setTextTitleStyle(size: Fonts.userWeather)

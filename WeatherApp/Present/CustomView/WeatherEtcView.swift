@@ -7,40 +7,46 @@
 
 import SwiftUI
 
-enum weatherEtc: String {
-    case humidity = "습도"
-    case cloud = "구름"
-    case windSpeed = "바람 속도"
-    case pressure = "기압"
+enum weatherEtc {
+    case humidity(title: String, unit: String)
+    case cloud(title: String, unit: String)
+    case windSpeed(title: String, unit: String)
+    
+    func etcTitle() -> String {
+        switch self {
+        case .humidity(let title, let unit), .cloud(let title, let unit), .windSpeed(let title, let unit):
+            return title
+        }
+    }
+    
+    func etcInfo<T: Numeric>(value: T) -> String {
+        switch self {
+        case .humidity(let title, let unit), .cloud(let title, let unit), .windSpeed(let title, let unit):
+            return "\(value)\(unit)"
+        }
+    }
 }
 
 struct WeatherEtcCell: View {
     
-    @State var etcType: weatherEtc = .humidity
+    var etcType: weatherEtc
+    var value: any Numeric
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
             HStack {
-                Text(etcType.rawValue).setTextTitleStyle(size: Fonts.weatherCellSub)
+                Text(etcType.etcTitle()).setTextTitleStyle(size: Fonts.weatherCellSub)
                 Spacer()
             }
             Spacer()
             HStack {
-                Text("56%").setTextTitleStyle(size: Fonts.etcCellInfo)
+                Text(etcType.etcInfo(value: value)).setTextTitleStyle(size: Fonts.etcCellInfo)
                 Spacer()
             }
-            
-            if etcType == .windSpeed {
-                Spacer()
-                HStack {
-                    Text("강풍: 3.39m/s").setTextTitleStyle(size: Fonts.weatherCellSub)
-                    Spacer()
-                }
-            }
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
+            Spacer()
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherHorizontalPadding)
         .frame(width: 170, height: 170, alignment: .leading)
         .background(Color.mainColor)
         .cornerRadius(12)
@@ -50,27 +56,24 @@ struct WeatherEtcCell: View {
 
 struct WeatherEtcView: View {
     
+    var weather: TodayWeatherModel
+    
     var body: some View {
         VStack() {
             HStack() {
-                WeatherEtcCell()
+                WeatherEtcCell(etcType: .humidity(title: "습도", unit: "%"), value: weather.humidity)
                 Spacer()
-                WeatherEtcCell()
+                WeatherEtcCell(etcType: .cloud(title: "구름", unit: "%"), value: weather.clouds)
             }
             
             Spacer().frame(height: 16)
             
             HStack {
-                WeatherEtcCell(etcType: .windSpeed)
+                    WeatherEtcCell(etcType: .windSpeed(title: "바람 속도", unit: "m/s"), value: weather.windSpeed)
                 Spacer()
-                WeatherEtcCell()
             }
         }
         .frame(maxWidth: .infinity)
     }
     
-}
-
-#Preview {
-    WeatherEtcView()
 }
