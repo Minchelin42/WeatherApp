@@ -13,6 +13,7 @@ struct WeatherState {
     var threeHourWeather: [WeatherForecastModel] = []
     var fiveDayWeather: [minMaxWeatherInfo] = []
     var searchPresent: Bool = false
+    var isLoading: Bool = true
 }
 
 struct minMaxWeatherInfo: Hashable {
@@ -64,6 +65,7 @@ final class WeatherViewModel: ObservableObject {
     
     func loadCityWeather() {
         Task {
+            self.state.isLoading = true
             NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
                 .receive(on: DispatchQueue.global())
                 .sink(receiveCompletion: { completion in
@@ -86,23 +88,27 @@ final class WeatherViewModel: ObservableObject {
     }
     
     func loadDaysWeather() {
-        NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.day2hour3(city: self.nowCity))
-            .receive(on: DispatchQueue.global())
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    print("Error loading weather: \(error.localizedDescription)")
-                case .finished:
-                    break
-                }
-            }, receiveValue: { [weak self] weather in
-                guard let self = self else { return }
-                
-                let weatherForecast = weather.toDomain()
-                saveDaysWeather(with: weatherForecast)
-                
-            })
-            .store(in: &cancellables)
+        Task {
+            NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.day2hour3(city: self.nowCity))
+                .receive(on: DispatchQueue.global())
+                .sink(receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        print("Error loading weather: \(error.localizedDescription)")
+                    case .finished:
+                        break
+                    }
+                }, receiveValue: { [weak self] weather in
+                    guard let self = self else { return }
+                    
+                    let weatherForecast = weather.toDomain()
+                    saveDaysWeather(with: weatherForecast)
+                    DispatchQueue.main.async {
+                        self.state.isLoading = false
+                    }
+                })
+                .store(in: &cancellables)
+        }
     }
     
     private func saveDaysWeather(with weatherForecast: [WeatherForecastModel]) {

@@ -33,7 +33,7 @@ struct HorizontalWeatherCell: View {
     var body: some View {
         
         VStack {
-            seperateLine()
+            SeperateLine()
             HStack(spacing: 3) {
                 Text(weather.day).setTextTitleStyle(size: Fonts.weatherCell5DayInfo).frame(width: 32, alignment: .leading)
                 Spacer()

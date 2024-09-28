@@ -40,6 +40,7 @@
 		39BB39CB2CA8039C00E30F5B /* WeatherForecastResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39CA2CA8039C00E30F5B /* WeatherForecastResponseDTO.swift */; };
 		39FC38162CA820EB0024A923 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 39FC38152CA820EB0024A923 /* Alamofire */; };
 		39FC381B2CA861D90024A923 /* NoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC381A2CA861D90024A923 /* NoResultView.swift */; };
+		39FC38202CA86BA20024A923 /* SeperateLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC381F2CA86BA20024A923 /* SeperateLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +90,7 @@
 		39BB39C22CA7F87600E30F5B /* TodayWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherModel.swift; sourceTree = "<group>"; };
 		39BB39CA2CA8039C00E30F5B /* WeatherForecastResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastResponseDTO.swift; sourceTree = "<group>"; };
 		39FC381A2CA861D90024A923 /* NoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultView.swift; sourceTree = "<group>"; };
+		39FC381F2CA86BA20024A923 /* SeperateLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeperateLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				39BB398F2CA47E1A00E30F5B /* WeatherInfoView.swift */,
 				39BB39952CA5C1FA00E30F5B /* WeatherMapView.swift */,
 				39FC381A2CA861D90024A923 /* NoResultView.swift */,
+				39FC381F2CA86BA20024A923 /* SeperateLine.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				39BB39842CA4665700E30F5B /* Day2WeatherView.swift in Sources */,
 				39BB397A2CA45E9700E30F5B /* Color.swift in Sources */,
 				39BB398A2CA46BBF00E30F5B /* setTextBigStyle.swift in Sources */,
+				39FC38202CA86BA20024A923 /* SeperateLine.swift in Sources */,
 				39BB39822CA464D000E30F5B /* WeatherSearchBar.swift in Sources */,
 				39BB39862CA4685800E30F5B /* setTextTitleStyle.swift in Sources */,
 				39BB39AC2CA727A300E30F5B /* SearchViewModel.swift in Sources */,

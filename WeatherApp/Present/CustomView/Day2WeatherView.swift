@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-struct seperateLine: View {
-    
-    var body: some View {
-        Color.whiteFont
-        .frame(maxWidth: .infinity)
-        .frame(height: 0.5)
-    }
-}
-
 struct Day2WeatherView: View {
     
     var day2Weather: [WeatherForecastModel]
@@ -24,7 +15,7 @@ struct Day2WeatherView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("시간대별 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
-            seperateLine()
+            SeperateLine()
             ScrollView(.horizontal) {
                 HStack(spacing: 2) {
                     ForEach(day2Weather, id: \.id) { weather in

@@ -59,7 +59,7 @@ struct CityCell: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(city.name).setTextBigStyle(size: 16)
             Text(city.country).setTextBigStyle(size: 12)
-            seperateLine()
+            SeperateLine()
         }
         .contentShape(Rectangle())
     }
