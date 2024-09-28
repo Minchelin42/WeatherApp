@@ -15,7 +15,7 @@ struct WeatherView: View {
             
             ScrollView() {
                 VStack(spacing: 16) {
-                    WeatherSearchBar(text: "")
+//                    WeatherSearchBar(text: "")
                     WeatherInfoView()
                     Day2WeatherView()
                     Day5WeatherView()
