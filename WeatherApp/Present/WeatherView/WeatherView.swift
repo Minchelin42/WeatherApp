@@ -23,6 +23,7 @@ struct WeatherView: View {
                 } else {
                     ScrollView() {
                         VStack(spacing: 16) {
+                            WeatherMapView(weather: viewModel.state.nowWeather)
                             WeatherSearchBar(tfInactive: true)
                                 .contentShape(Rectangle())
                                 .sheet(isPresented: $viewModel.state.searchPresent, content: {
@@ -41,6 +42,7 @@ struct WeatherView: View {
                             
                         }
                         .padding(.horizontal, Padding.weatherHorizontalPadding)
+                        .padding(.vertical, Padding.weatherHorizontalPadding)
                         .frame(maxHeight: .infinity)
                     }
                     .scrollIndicators(.hidden)

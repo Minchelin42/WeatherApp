@@ -16,10 +16,10 @@ struct MapViewRepresentable: UIViewRepresentable {
     /// 사용할 UIView를 생성하고, 초기화하는 메서드
     func makeUIView(context: Context) -> MKMapView {
         mapView.preferredConfiguration = MKHybridMapConfiguration()
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 5.0,
-                                                                                                                                                         longitudeDelta: 5.0)), animated: true)
+        mapView.isZoomEnabled = false
+        mapView.isScrollEnabled = false
+        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 7.0,
+                                                                                                                                                         longitudeDelta: 7.0)), animated: true)
         
         let annotation = MKPointAnnotation()
         
@@ -41,8 +41,8 @@ struct MapViewRepresentable: UIViewRepresentable {
             uiView.addAnnotation(annotation)
             
             // 지도 중심 및 영역 업데이트
-            uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 5.0,
-                                                                                                                                                                 longitudeDelta: 5.0)), animated: true)
+            uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 7.0,
+                                                                                                                                                                 longitudeDelta: 7.0)), animated: true)
         }
     }
 }

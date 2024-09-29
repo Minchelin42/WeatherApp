@@ -32,6 +32,8 @@ struct WeatherEtcCell: View {
     var etcType: weatherEtc
     var value: any Numeric
     
+    let frameSize = (UIScreen.main.bounds.width - (Padding.weatherHorizontalPadding * 3)) / 2
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -47,7 +49,7 @@ struct WeatherEtcCell: View {
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
         .padding(.vertical, Padding.weatherHorizontalPadding)
-        .frame(width: 170, height: 170, alignment: .leading)
+        .frame(width: frameSize, height: frameSize, alignment: .leading)
         .background(Color.mainColor)
         .cornerRadius(12)
     }

@@ -42,7 +42,10 @@ struct HorizontalWeatherCell: View {
                     .frame(width: 32, height: 32)
                     .aspectRatio(contentMode: .fill)
                 Spacer()
-                Text("최소: \(weather.temp_min)°     최대: \(weather.temp_max)°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo)
+                Spacer()
+                Text("최소: \(weather.temp_min)°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo).frame(width: 60, alignment: .leading)
+                Spacer().frame(width: 20)
+                Text("최대: \(weather.temp_max)°").setTextTitleStyle(size: Fonts.weatherCell5DayInfo).frame(width: 60, alignment: .leading)
             }
         }
 

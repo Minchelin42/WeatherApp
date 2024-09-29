@@ -17,7 +17,7 @@ struct Day2WeatherView: View {
             Text("시간대별 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
             SeperateLine()
             ScrollView(.horizontal) {
-                HStack(spacing: 2) {
+                HStack(spacing: 0) {
                     ForEach(day2Weather, id: \.id) { weather in
                         VerticalWeatherCell(weather: weather)
                     }
@@ -45,8 +45,7 @@ struct VerticalWeatherCell: View {
                 .aspectRatio(contentMode: .fill)
             Text("\(weather.temp)°").setTextTitleStyle(size: Fonts.weatHerCell2DayInfo)
         }
-        .frame(maxWidth: 80)
-        .padding(.horizontal, 8)
+        .frame(width: (UIScreen.main.bounds.width - (Padding.weatherHorizontalPadding * 4)) / 6)
     }
 }
 
