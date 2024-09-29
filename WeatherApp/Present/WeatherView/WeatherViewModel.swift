@@ -15,6 +15,7 @@ struct WeatherState {
     var searchPresent: Bool = false
     var isLoading: Bool = true
     var networkConnect: Bool = true
+    var apiError: Bool = true
 }
 
 struct minMaxWeatherInfo: Hashable {
@@ -88,9 +89,8 @@ final class WeatherViewModel: ObservableObject {
                 switch completion {
                 case .failure(let error):
                     print("Error loading weather: \(error.localizedDescription)")
-                    DispatchQueue.main.async {
-                        self?.state.isLoading = false
-                    }
+                    self?.state.isLoading = false
+                    self?.state.apiError = true
                 case .finished:
                     break
                 }
@@ -115,6 +115,7 @@ final class WeatherViewModel: ObservableObject {
                 case .failure(let error):
                     print("Error loading weather: \(error.localizedDescription)")
                     self?.state.isLoading = false
+                    self?.state.apiError = true
                 case .finished:
                     break
                 }
@@ -123,7 +124,7 @@ final class WeatherViewModel: ObservableObject {
                 
                 let weatherForecast = weather.toDomain()
                 saveDaysWeather(with: weatherForecast)
-
+                self.state.apiError = false
                 self.state.isLoading = false
             })
             .store(in: &cancellables)

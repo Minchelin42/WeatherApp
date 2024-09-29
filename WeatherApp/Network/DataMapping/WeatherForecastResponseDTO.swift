@@ -11,7 +11,7 @@ struct WeatherForecastResponseDTO: ResponseDTOType {
     var list: [WeatherForecast]
 }
 
-struct WeatherForecast: Codable, Equatable {
+struct WeatherForecast: Codable {
     var main: MainInfo //main - temp
     var weather: [Weather] //weather - icon
     var dt_txt: String //date

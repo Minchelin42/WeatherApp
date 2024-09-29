@@ -12,15 +12,19 @@ struct WeatherView: View {
     @StateObject private var viewModel = WeatherViewModel()
     
     var body: some View {
-        if viewModel.state.networkConnect {
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()
                 if viewModel.state.isLoading {
                     LoadingView()
+                } else if !viewModel.state.networkConnect {
+                    NetworkDisconnectView()
+                }  else if viewModel.state.apiError {
+                    APIErrorView()
                 } else {
-                    ScrollView() {
+                    ScrollView() {                        
                         VStack(spacing: 16) {
+                            
                             WeatherSearchBar(tfInactive: true)
                                 .contentShape(Rectangle())
                                 .sheet(isPresented: $viewModel.state.searchPresent, content: {
@@ -35,11 +39,11 @@ struct WeatherView: View {
                             Day5WeatherView(day5Weather: viewModel.state.fiveDayWeather)
                             WeatherMapView(weather: viewModel.state.nowWeather)
                             WeatherEtcView(weather: viewModel.state.nowWeather)
-                            
                         }
-                        .padding(.horizontal, Padding.weatherHorizontalPadding)
-                        .padding(.vertical, Padding.weatherVerticalPadding)
                         .frame(maxHeight: .infinity)
+                        .padding(.horizontal, Padding.weatherHorizontalPadding)
+                        .padding(.top, Padding.weatherVerticalPadding)
+                        
                     }
                     .scrollIndicators(.hidden)
                 }
@@ -47,12 +51,8 @@ struct WeatherView: View {
             .task {
                 viewModel.dispatch(intent: .loadCityWeather)
             }
-        } else {
-            NetworkDisconnectView()
-        }
+
         
     }
 }
-
-
 

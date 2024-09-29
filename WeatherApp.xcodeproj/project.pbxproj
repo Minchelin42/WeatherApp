@@ -48,6 +48,7 @@
 		39FC382D2CA903850024A923 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382C2CA903850024A923 /* UserInfo.swift */; };
 		39FC382F2CA915BD0024A923 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382E2CA915BD0024A923 /* String.swift */; };
 		39FC38322CA92E030024A923 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38312CA92E030024A923 /* LoadingView.swift */; };
+		39FC38352CA972330024A923 /* APIErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38342CA972330024A923 /* APIErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +107,7 @@
 		39FC382E2CA915BD0024A923 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		39FC38312CA92E030024A923 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		39FC38332CA930450024A923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		39FC38342CA972330024A923 /* APIErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +147,10 @@
 				39BB39C42CA7F8B300E30F5B /* Protocol */,
 				39BB39A62CA7238E00E30F5B /* Codable */,
 				39BB39A12CA720B100E30F5B /* Network */,
+				39BB39772CA45C0000E30F5B /* Present */,
 				39BB39972CA5C9DE00E30F5B /* Extension */,
 				39BB39782CA45E0A00E30F5B /* Style */,
 				39BB397B2CA4605D00E30F5B /* CustomModifier */,
-				39BB39772CA45C0000E30F5B /* Present */,
 				39BB39692CA459E500E30F5B /* WeatherAppApp.swift */,
 				39BB396D2CA459E800E30F5B /* Assets.xcassets */,
 				39BB396F2CA459E800E30F5B /* Preview Content */,
@@ -308,6 +310,7 @@
 				39BB39952CA5C1FA00E30F5B /* WeatherMapView.swift */,
 				39BB398D2CA476A000E30F5B /* WeatherEtcView.swift */,
 				39FC38312CA92E030024A923 /* LoadingView.swift */,
+				39FC38342CA972330024A923 /* APIErrorView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				39BB397A2CA45E9700E30F5B /* Color.swift in Sources */,
 				39BB398A2CA46BBF00E30F5B /* setTextLargeTitleStyle.swift in Sources */,
 				39FC38202CA86BA20024A923 /* SeperateLine.swift in Sources */,
+				39FC38352CA972330024A923 /* APIErrorView.swift in Sources */,
 				39BB39822CA464D000E30F5B /* WeatherSearchBar.swift in Sources */,
 				39BB39862CA4685800E30F5B /* setTextTitleStyle.swift in Sources */,
 				39BB39AC2CA727A300E30F5B /* SearchViewModel.swift in Sources */,
