@@ -14,14 +14,13 @@ struct Day5WeatherView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
             Text("5일간의 일기예보").setTextTitleStyle(size: Fonts.weatherCellTitle)
             ForEach(day5Weather, id: \.id) { weather in
                 HorizontalWeatherCell(weather: weather)
             }
-            Spacer().frame(height: Padding.weatherHorizontalPadding)
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherVerticalPadding)
         .setBackgroundStyle(color: Color.mainColor, cornerRadius: 14, height: 270)
     }
 }
@@ -52,6 +51,3 @@ struct HorizontalWeatherCell: View {
     }
 }
 
-//#Preview {
-//    Day5WeatherView()
-//}

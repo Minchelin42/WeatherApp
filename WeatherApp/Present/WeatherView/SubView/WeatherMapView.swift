@@ -13,7 +13,6 @@ struct MapViewRepresentable: UIViewRepresentable {
     
     var coordinate: Coordinates
     
-    /// 사용할 UIView를 생성하고, 초기화하는 메서드
     func makeUIView(context: Context) -> MKMapView {
         mapView.preferredConfiguration = MKHybridMapConfiguration()
         mapView.isUserInteractionEnabled = false
@@ -29,9 +28,7 @@ struct MapViewRepresentable: UIViewRepresentable {
         return mapView
     }
     
-    /// UIView의 뷰 업데이트가 필요할 때 호출되는 메서드
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        print("지금 좌표: \(coordinate.lon) \(coordinate.lat)")
         DispatchQueue.main.async {
             
             uiView.removeAnnotations(uiView.annotations)
@@ -40,7 +37,6 @@ struct MapViewRepresentable: UIViewRepresentable {
             annotation.coordinate = CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon)
             uiView.addAnnotation(annotation)
             
-            // 지도 중심 및 영역 업데이트
             uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 7.0,
                                                                                                                                                                  longitudeDelta: 7.0)), animated: true)
         }
@@ -69,9 +65,6 @@ struct WeatherMapView: View {
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
         .setBackgroundStyle(color: Color.mainColor, cornerRadius: 14, height: 380)
-        .onAppear {
-            print(weather.coord)
-        }
     }
 }
 

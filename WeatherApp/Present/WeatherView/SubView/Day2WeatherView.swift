@@ -26,7 +26,7 @@ struct Day2WeatherView: View {
             }
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
-        .padding(.vertical, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherVerticalPadding)
         .setBackgroundStyle(color: Color.mainColor, cornerRadius: 14, height: 120)
 
     }
@@ -49,6 +49,3 @@ struct VerticalWeatherCell: View {
     }
 }
 
-//#Preview {
-//    Day2WeatherView()
-//}

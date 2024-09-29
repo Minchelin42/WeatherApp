@@ -10,12 +10,9 @@ import SwiftUI
 struct SeperateLine: View {
     
     var body: some View {
-        Color.whiteFont
+        Color.whiteColor
         .frame(maxWidth: .infinity)
         .frame(height: 0.5)
     }
 }
 
-#Preview {
-    SeperateLine()
-}

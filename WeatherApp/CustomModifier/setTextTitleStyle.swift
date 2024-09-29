@@ -16,7 +16,7 @@ private struct setTextMediumWhiteStyle: ViewModifier {
         content
             .font(.system(size: size))
             .fontWeight(.medium)
-            .foregroundColor(Color.whiteFont)
+            .foregroundColor(Color.whiteColor)
     }
     
 }

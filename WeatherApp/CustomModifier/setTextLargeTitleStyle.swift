@@ -1,5 +1,5 @@
 //
-//  setTextBigStyle.swift
+//  setTextLargeTitleStyle.swift
 //  WeatherApp
 //
 //  Created by 민지은 on 9/26/24.
@@ -15,14 +15,14 @@ private struct setTextSemiBoldWhiteStyle: ViewModifier {
         content
             .font(.system(size: size))
             .fontWeight(.semibold)
-            .foregroundColor(Color.whiteFont)
+            .foregroundColor(Color.whiteColor)
     }
     
 }
 
 
 extension View {
-    func setTextBigStyle(size: CGFloat) -> some View {
+    func setTextLargeTitleStyle(size: CGFloat) -> some View {
         modifier(setTextSemiBoldWhiteStyle(size: size))
     }
 }

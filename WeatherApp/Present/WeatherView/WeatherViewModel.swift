@@ -108,7 +108,7 @@ final class WeatherViewModel: ObservableObject {
     }
     
     private func loadDaysWeather() {
-        NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.day2hour3(city: self.nowCity))
+        NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.forecast(city: self.nowCity))
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {

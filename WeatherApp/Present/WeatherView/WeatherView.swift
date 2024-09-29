@@ -27,7 +27,6 @@ struct WeatherView: View {
                                     SearchView(weatherViewModel: viewModel)
                                 })
                                 .onTapGesture {
-                                    print("searchBar Click")
                                     viewModel.dispatch(intent: .searchCity)
                                 }
                             
@@ -39,7 +38,7 @@ struct WeatherView: View {
                             
                         }
                         .padding(.horizontal, Padding.weatherHorizontalPadding)
-                        .padding(.vertical, Padding.weatherHorizontalPadding)
+                        .padding(.vertical, Padding.weatherVerticalPadding)
                         .frame(maxHeight: .infinity)
                     }
                     .scrollIndicators(.hidden)
@@ -55,17 +54,5 @@ struct WeatherView: View {
     }
 }
 
-struct LoadingView: View {
 
-    var body: some View {
-        VStack {
-            Spacer()
-            ProgressView()
-            .scaleEffect(1.5, anchor: .center)
-            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-            Spacer()
-        }
-    }
-
-}
 

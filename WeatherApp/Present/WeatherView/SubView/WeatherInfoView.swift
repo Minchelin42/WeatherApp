@@ -18,10 +18,8 @@ struct WeatherInfoView: View {
             Text(weather.description).setTextTitleStyle(size: Fonts.userWeather)
             Text("최고: \(weather.temp_max)° | 최저: \(weather.temp_min)°").setTextTitleStyle(size: Fonts.userTempRange)
         }
-        .padding(.vertical, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherVerticalPadding)
     }
 }
 
-//#Preview {
-//    WeatherInfoView()
-//}
+

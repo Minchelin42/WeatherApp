@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		39BB396A2CA459E500E30F5B /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39692CA459E500E30F5B /* WeatherAppApp.swift */; };
-		39BB396C2CA459E500E30F5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB396B2CA459E500E30F5B /* ContentView.swift */; };
 		39BB396E2CA459E800E30F5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39BB396D2CA459E800E30F5B /* Assets.xcassets */; };
 		39BB39712CA459E800E30F5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39BB39702CA459E800E30F5B /* Preview Assets.xcassets */; };
 		39BB397A2CA45E9700E30F5B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39792CA45E9700E30F5B /* Color.swift */; };
@@ -18,7 +17,7 @@
 		39BB39842CA4665700E30F5B /* Day2WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39832CA4665700E30F5B /* Day2WeatherView.swift */; };
 		39BB39862CA4685800E30F5B /* setTextTitleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39852CA4685800E30F5B /* setTextTitleStyle.swift */; };
 		39BB39882CA46B1400E30F5B /* Day5WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39872CA46B1400E30F5B /* Day5WeatherView.swift */; };
-		39BB398A2CA46BBF00E30F5B /* setTextBigStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39892CA46BBF00E30F5B /* setTextBigStyle.swift */; };
+		39BB398A2CA46BBF00E30F5B /* setTextLargeTitleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB39892CA46BBF00E30F5B /* setTextLargeTitleStyle.swift */; };
 		39BB398C2CA46F9D00E30F5B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB398B2CA46F9D00E30F5B /* Fonts.swift */; };
 		39BB398E2CA476A000E30F5B /* WeatherEtcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB398D2CA476A000E30F5B /* WeatherEtcView.swift */; };
 		39BB39902CA47E1A00E30F5B /* WeatherInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB398F2CA47E1A00E30F5B /* WeatherInfoView.swift */; };
@@ -48,6 +47,7 @@
 		39FC382B2CA903600024A923 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382A2CA903600024A923 /* UserDefaultsManager.swift */; };
 		39FC382D2CA903850024A923 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382C2CA903850024A923 /* UserInfo.swift */; };
 		39FC382F2CA915BD0024A923 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382E2CA915BD0024A923 /* String.swift */; };
+		39FC38322CA92E030024A923 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38312CA92E030024A923 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,7 +66,6 @@
 /* Begin PBXFileReference section */
 		39BB39662CA459E500E30F5B /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39BB39692CA459E500E30F5B /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
-		39BB396B2CA459E500E30F5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		39BB396D2CA459E800E30F5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39BB39702CA459E800E30F5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		39BB39792CA45E9700E30F5B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -76,7 +75,7 @@
 		39BB39832CA4665700E30F5B /* Day2WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2WeatherView.swift; sourceTree = "<group>"; };
 		39BB39852CA4685800E30F5B /* setTextTitleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setTextTitleStyle.swift; sourceTree = "<group>"; };
 		39BB39872CA46B1400E30F5B /* Day5WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5WeatherView.swift; sourceTree = "<group>"; };
-		39BB39892CA46BBF00E30F5B /* setTextBigStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setTextBigStyle.swift; sourceTree = "<group>"; };
+		39BB39892CA46BBF00E30F5B /* setTextLargeTitleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setTextLargeTitleStyle.swift; sourceTree = "<group>"; };
 		39BB398B2CA46F9D00E30F5B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		39BB398D2CA476A000E30F5B /* WeatherEtcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEtcView.swift; sourceTree = "<group>"; };
 		39BB398F2CA47E1A00E30F5B /* WeatherInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoView.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		39FC382A2CA903600024A923 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		39FC382C2CA903850024A923 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		39FC382E2CA915BD0024A923 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		39FC38312CA92E030024A923 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +148,6 @@
 				39BB397B2CA4605D00E30F5B /* CustomModifier */,
 				39BB39772CA45C0000E30F5B /* Present */,
 				39BB39692CA459E500E30F5B /* WeatherAppApp.swift */,
-				39BB396B2CA459E500E30F5B /* ContentView.swift */,
 				39BB396D2CA459E800E30F5B /* Assets.xcassets */,
 				39BB396F2CA459E800E30F5B /* Preview Content */,
 			);
@@ -169,7 +168,6 @@
 				39BB39B02CA7B1F700E30F5B /* WeatherView */,
 				39BB39AA2CA7278E00E30F5B /* SearchView */,
 				39BB39802CA464AD00E30F5B /* CustomView */,
-				39FC38232CA870320024A923 /* NetworkDisconnectView.swift */,
 			);
 			path = Present;
 			sourceTree = "<group>";
@@ -189,7 +187,7 @@
 			children = (
 				39BB397C2CA4608E00E30F5B /* setBackgroundStyle.swift */,
 				39BB39852CA4685800E30F5B /* setTextTitleStyle.swift */,
-				39BB39892CA46BBF00E30F5B /* setTextBigStyle.swift */,
+				39BB39892CA46BBF00E30F5B /* setTextLargeTitleStyle.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -198,12 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				39BB39812CA464D000E30F5B /* WeatherSearchBar.swift */,
-				39BB39832CA4665700E30F5B /* Day2WeatherView.swift */,
-				39BB39872CA46B1400E30F5B /* Day5WeatherView.swift */,
-				39BB398D2CA476A000E30F5B /* WeatherEtcView.swift */,
-				39BB398F2CA47E1A00E30F5B /* WeatherInfoView.swift */,
-				39BB39952CA5C1FA00E30F5B /* WeatherMapView.swift */,
-				39FC381A2CA861D90024A923 /* NoResultView.swift */,
 				39FC381F2CA86BA20024A923 /* SeperateLine.swift */,
 			);
 			path = CustomView;
@@ -253,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				39BB399A2CA6ED3000E30F5B /* SearchView.swift */,
+				39FC381A2CA861D90024A923 /* NoResultView.swift */,
 				39BB39AB2CA727A300E30F5B /* SearchViewModel.swift */,
 			);
 			path = SearchView;
@@ -261,8 +254,9 @@
 		39BB39B02CA7B1F700E30F5B /* WeatherView */ = {
 			isa = PBXGroup;
 			children = (
-				39BB39912CA5929A00E30F5B /* WeatherView.swift */,
 				39BB39B12CA7B20A00E30F5B /* WeatherViewModel.swift */,
+				39BB39912CA5929A00E30F5B /* WeatherView.swift */,
+				39FC38302CA92D700024A923 /* SubView */,
 			);
 			path = WeatherView;
 			sourceTree = "<group>";
@@ -300,6 +294,20 @@
 				39FC382C2CA903850024A923 /* UserInfo.swift */,
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		39FC38302CA92D700024A923 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				39FC38232CA870320024A923 /* NetworkDisconnectView.swift */,
+				39BB398F2CA47E1A00E30F5B /* WeatherInfoView.swift */,
+				39BB39832CA4665700E30F5B /* Day2WeatherView.swift */,
+				39BB39872CA46B1400E30F5B /* Day5WeatherView.swift */,
+				39BB39952CA5C1FA00E30F5B /* WeatherMapView.swift */,
+				39BB398D2CA476A000E30F5B /* WeatherEtcView.swift */,
+				39FC38312CA92E030024A923 /* LoadingView.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,9 +394,9 @@
 				39FC382B2CA903600024A923 /* UserDefaultsManager.swift in Sources */,
 				39BB39C32CA7F87600E30F5B /* TodayWeatherModel.swift in Sources */,
 				39FC38222CA86F060024A923 /* NetworkMonitor.swift in Sources */,
+				39FC38322CA92E030024A923 /* LoadingView.swift in Sources */,
 				39BB397D2CA4608E00E30F5B /* setBackgroundStyle.swift in Sources */,
 				39FC38242CA870320024A923 /* NetworkDisconnectView.swift in Sources */,
-				39BB396C2CA459E500E30F5B /* ContentView.swift in Sources */,
 				39BB39B22CA7B20A00E30F5B /* WeatherViewModel.swift in Sources */,
 				39BB396A2CA459E500E30F5B /* WeatherAppApp.swift in Sources */,
 				39BB39962CA5C1FB00E30F5B /* WeatherMapView.swift in Sources */,
@@ -401,7 +409,7 @@
 				39BB39882CA46B1400E30F5B /* Day5WeatherView.swift in Sources */,
 				39BB39842CA4665700E30F5B /* Day2WeatherView.swift in Sources */,
 				39BB397A2CA45E9700E30F5B /* Color.swift in Sources */,
-				39BB398A2CA46BBF00E30F5B /* setTextBigStyle.swift in Sources */,
+				39BB398A2CA46BBF00E30F5B /* setTextLargeTitleStyle.swift in Sources */,
 				39FC38202CA86BA20024A923 /* SeperateLine.swift in Sources */,
 				39BB39822CA464D000E30F5B /* WeatherSearchBar.swift in Sources */,
 				39BB39862CA4685800E30F5B /* setTextTitleStyle.swift in Sources */,

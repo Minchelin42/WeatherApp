@@ -10,7 +10,7 @@ import SwiftUI
 extension Color {
     
     static let mainColor = Color("weatherBlue").opacity(0.6)
-    static let searchColor = Color("weatherSkyBlue").opacity(0.4)
-    static let grayFont = Color("weatherGray")
-    static let whiteFont = Color("weatherWhite")
+    static let searchBarColor = Color("weatherSkyBlue").opacity(0.4)
+    static let grayColor = Color("weatherGray")
+    static let whiteColor = Color("weatherWhite")
 }

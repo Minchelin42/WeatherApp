@@ -9,5 +9,6 @@ import Foundation
 
 enum Padding {
     static let weatherHorizontalPadding: CGFloat = 16
+    static let weatherVerticalPadding: CGFloat = 16
 }
 

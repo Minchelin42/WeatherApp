@@ -9,6 +9,7 @@ import SwiftUI
 
 enum AppImage {
     static let searchImg = Image(systemName: "magnifyingglass")
+    static let networkError = Image(systemName: "wifi.slash")
 }
 
 

@@ -17,10 +17,9 @@ struct SearchView: View {
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()
-                VStack {
-                    Spacer().frame(height: 24)
+                VStack(spacing: 16) {
                     WeatherSearchBar(text: $viewModel.query, tfInactive: false)
-                    Spacer().frame(height: 16)
+                 
                     if !viewModel.state.cityList.isEmpty {
                         ScrollView() {
                             LazyVStack {
@@ -44,6 +43,7 @@ struct SearchView: View {
                     }
                 }
                 .padding(.horizontal, Padding.weatherHorizontalPadding)
+                .padding(.vertical, Padding.weatherVerticalPadding)
             }
 
     }
@@ -56,8 +56,8 @@ struct CityCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(city.name).setTextBigStyle(size: 16)
-            Text(city.country).setTextBigStyle(size: 12)
+            Text(city.name).setTextLargeTitleStyle(size: 16)
+            Text(city.country).setTextLargeTitleStyle(size: 12)
             SeperateLine()
         }
         .contentShape(Rectangle())

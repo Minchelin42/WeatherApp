@@ -20,12 +20,12 @@ struct WeatherSearchBar: View {
     var body: some View {
         HStack {
             Spacer().frame(width: 10)
-            AppImage.searchImg.foregroundColor(Color.grayFont)
+            AppImage.searchImg.foregroundColor(Color.grayColor)
             TextField("도시명으로 검색", text: $text)
             .frame(height: 36)
             .disabled(tfInactive)
         }
-        .setBackgroundStyle(color: Color.searchColor, cornerRadius: 8, height: 36)
+        .setBackgroundStyle(color: Color.searchBarColor, cornerRadius: 8, height: 36)
     }
 }
 

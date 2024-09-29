@@ -48,7 +48,7 @@ struct WeatherEtcCell: View {
             Spacer()
         }
         .padding(.horizontal, Padding.weatherHorizontalPadding)
-        .padding(.vertical, Padding.weatherHorizontalPadding)
+        .padding(.vertical, Padding.weatherVerticalPadding)
         .frame(width: frameSize, height: frameSize, alignment: .leading)
         .background(Color.mainColor)
         .cornerRadius(12)

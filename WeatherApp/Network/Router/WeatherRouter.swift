@@ -10,8 +10,7 @@ import Alamofire
 
 enum WeatherRouter {
     case current(city: City)
-    case day2hour3(city: City)
-    case day5MaxMin(city: City)
+    case forecast(city: City)
 }
 
 extension WeatherRouter: TargetType {
@@ -28,9 +27,7 @@ extension WeatherRouter: TargetType {
         switch self {
         case .current:
             return "weather"
-        case .day2hour3:
-            return "forecast"
-        case .day5MaxMin:
+        case .forecast:
             return "forecast"
         }
     }
@@ -45,7 +42,7 @@ extension WeatherRouter: TargetType {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .current(let city), .day2hour3(let city), .day5MaxMin(let city):
+        case .current(let city), .forecast(let city):
             return [URLQueryItem(name: "lat", value: String(city.coord.lat)), URLQueryItem(name: "lon", value: String(city.coord.lon)), URLQueryItem(name: "appid", value: APIKey.weatherToken),
                     URLQueryItem(name: "lang", value: "kr")]
         }
