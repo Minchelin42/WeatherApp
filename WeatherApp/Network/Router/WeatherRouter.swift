@@ -46,7 +46,7 @@ extension WeatherRouter: TargetType {
     var queryItems: [URLQueryItem]? {
         switch self {
         case .current(let city), .day2hour3(let city), .day5MaxMin(let city):
-            return [URLQueryItem(name: "lat", value: String(city.coord.lat)), URLQueryItem(name: "lon", value: String(city.coord.lon)), URLQueryItem(name: "appid", value: ""),
+            return [URLQueryItem(name: "lat", value: String(city.coord.lat)), URLQueryItem(name: "lon", value: String(city.coord.lon)), URLQueryItem(name: "appid", value: APIKey.weatherToken),
                     URLQueryItem(name: "lang", value: "kr")]
         }
     }

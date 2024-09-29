@@ -43,6 +43,8 @@
 		39FC38202CA86BA20024A923 /* SeperateLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC381F2CA86BA20024A923 /* SeperateLine.swift */; };
 		39FC38222CA86F060024A923 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38212CA86F060024A923 /* NetworkMonitor.swift */; };
 		39FC38242CA870320024A923 /* NetworkDisconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38232CA870320024A923 /* NetworkDisconnectView.swift */; };
+		39FC38262CA8F76C0024A923 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39FC38252CA8F76C0024A923 /* .gitignore */; };
+		39FC38282CA8F7AF0024A923 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38272CA8F7AF0024A923 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +97,8 @@
 		39FC381F2CA86BA20024A923 /* SeperateLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeperateLine.swift; sourceTree = "<group>"; };
 		39FC38212CA86F060024A923 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		39FC38232CA870320024A923 /* NetworkDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDisconnectView.swift; sourceTree = "<group>"; };
+		39FC38252CA8F76C0024A923 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		39FC38272CA8F7AF0024A923 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 		39BB39682CA459E500E30F5B /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				39FC38252CA8F76C0024A923 /* .gitignore */,
 				39BB39C42CA7F8B300E30F5B /* Protocol */,
 				39BB39A62CA7238E00E30F5B /* Codable */,
 				39BB39A12CA720B100E30F5B /* Network */,
@@ -213,6 +218,7 @@
 				39BB39A92CA7273800E30F5B /* Model */,
 				39BB39A22CA720FA00E30F5B /* NetworkManager.swift */,
 				39FC38212CA86F060024A923 /* NetworkMonitor.swift */,
+				39FC38272CA8F7AF0024A923 /* APIKey.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39FC38262CA8F76C0024A923 /* .gitignore in Resources */,
 				39BB39712CA459E800E30F5B /* Preview Assets.xcassets in Resources */,
 				39BB396E2CA459E800E30F5B /* Assets.xcassets in Resources */,
 				39BB39A02CA7206600E30F5B /* citylist.json in Resources */,
@@ -385,6 +392,7 @@
 				39BB398E2CA476A000E30F5B /* WeatherEtcView.swift in Sources */,
 				39BB397F2CA462C900E30F5B /* Images.swift in Sources */,
 				39BB39CB2CA8039C00E30F5B /* WeatherForecastResponseDTO.swift in Sources */,
+				39FC38282CA8F7AF0024A923 /* APIKey.swift in Sources */,
 				39BB39BD2CA7C2F300E30F5B /* WeatherRouter.swift in Sources */,
 				39BB39A52CA721C900E30F5B /* City.swift in Sources */,
 				39BB39992CA6EAC600E30F5B /* Padding.swift in Sources */,

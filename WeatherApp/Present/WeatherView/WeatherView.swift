@@ -23,7 +23,6 @@ struct WeatherView: View {
                 } else {
                     ScrollView() {
                         VStack(spacing: 16) {
-                            WeatherMapView(weather: viewModel.state.nowWeather)
                             WeatherSearchBar(tfInactive: true)
                                 .contentShape(Rectangle())
                                 .sheet(isPresented: $viewModel.state.searchPresent, content: {
