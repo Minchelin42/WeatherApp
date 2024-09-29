@@ -10,11 +10,6 @@ import SwiftUI
 struct NetworkDisconnectView: View {
     
     var body: some View {
-        
-        ZStack {
-            Color.mainColor
-                .ignoresSafeArea()
-            
             VStack(alignment: .center) {
                 AppImage.networkError
                     .resizable()
@@ -26,9 +21,6 @@ struct NetworkDisconnectView: View {
                 Spacer().frame(height: 4)
                 Text("네트워크 연결이 안정된 후 서비스를 이용하실 수 있습니다").setTextTitleStyle(size: 12)
             }
-
-        }
-
     }
 }
 
