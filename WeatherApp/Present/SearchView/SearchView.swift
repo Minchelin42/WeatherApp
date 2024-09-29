@@ -28,6 +28,7 @@ struct SearchView: View {
                                         .onTapGesture {
                                             weatherViewModel.nowCity = city
                                             dismiss()
+                                            weatherViewModel.dispatch(intent: .loadCityWeather)
                                         }
                                         .onAppear {
                                             if city == viewModel.state.cityList.last && viewModel.query.isEmpty {

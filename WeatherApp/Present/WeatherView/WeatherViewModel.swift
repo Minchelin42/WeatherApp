@@ -68,7 +68,6 @@ final class WeatherViewModel: ObservableObject {
               .sink { [weak self] city in
                   guard let self = self else { return }
                   self.saveUserCity(city)
-                  self.dispatch(intent: .loadCityWeather)
               }
               .store(in: &cancellables)
     }
@@ -96,13 +95,10 @@ final class WeatherViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] weather in
                 guard let self = self else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.state.nowWeather = weather.toDomain()
-                    self.state.nowWeather.city = self.nowCity.name
-                    
-                    self.loadDaysWeather()
-                }
+                self.state.nowWeather = weather.toDomain()
+                self.state.nowWeather.city = self.nowCity.name
+                
+                self.loadDaysWeather()
             })
             .store(in: &cancellables)
     }
