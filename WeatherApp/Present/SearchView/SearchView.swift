@@ -43,7 +43,7 @@ struct SearchView: View {
                     }
                 }
                 .padding(.horizontal, Padding.weatherHorizontalPadding)
-                .padding(.vertical, Padding.weatherVerticalPadding)
+                .padding(.top, Padding.weatherVerticalPadding)
             }
 
     }
