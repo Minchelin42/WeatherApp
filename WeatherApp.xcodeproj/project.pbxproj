@@ -47,6 +47,7 @@
 		39FC38282CA8F7AF0024A923 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38272CA8F7AF0024A923 /* APIKey.swift */; };
 		39FC382B2CA903600024A923 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382A2CA903600024A923 /* UserDefaultsManager.swift */; };
 		39FC382D2CA903850024A923 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382C2CA903850024A923 /* UserInfo.swift */; };
+		39FC382F2CA915BD0024A923 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382E2CA915BD0024A923 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +104,7 @@
 		39FC38272CA8F7AF0024A923 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		39FC382A2CA903600024A923 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		39FC382C2CA903850024A923 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		39FC382E2CA915BD0024A923 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				39BB39C42CA7F8B300E30F5B /* Protocol */,
 				39BB39A62CA7238E00E30F5B /* Codable */,
 				39BB39A12CA720B100E30F5B /* Network */,
+				39BB39972CA5C9DE00E30F5B /* Extension */,
 				39BB39782CA45E0A00E30F5B /* Style */,
 				39BB397B2CA4605D00E30F5B /* CustomModifier */,
 				39BB39772CA45C0000E30F5B /* Present */,
@@ -174,7 +177,6 @@
 		39BB39782CA45E0A00E30F5B /* Style */ = {
 			isa = PBXGroup;
 			children = (
-				39BB39972CA5C9DE00E30F5B /* Extension */,
 				39BB397E2CA462C900E30F5B /* Images.swift */,
 				39BB398B2CA46F9D00E30F5B /* Fonts.swift */,
 				39BB39982CA6EAC600E30F5B /* Padding.swift */,
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				39BB39792CA45E9700E30F5B /* Color.swift */,
+				39FC382E2CA915BD0024A923 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				39BB397F2CA462C900E30F5B /* Images.swift in Sources */,
 				39BB39CB2CA8039C00E30F5B /* WeatherForecastResponseDTO.swift in Sources */,
 				39FC38282CA8F7AF0024A923 /* APIKey.swift in Sources */,
+				39FC382F2CA915BD0024A923 /* String.swift in Sources */,
 				39BB39BD2CA7C2F300E30F5B /* WeatherRouter.swift in Sources */,
 				39BB39A52CA721C900E30F5B /* City.swift in Sources */,
 				39BB39992CA6EAC600E30F5B /* Padding.swift in Sources */,

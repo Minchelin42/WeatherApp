@@ -42,30 +42,27 @@ final class WeatherViewModel: ObservableObject {
     
     init() {
         self.nowCity = City(id: UserInfo.id, name: UserInfo.city, country: UserInfo.country, coord: Coordinates(lon: UserInfo.lon, lat: UserInfo.lat))
-        self.nowCitySetting()
-        self.setNetworkMonitor()
+        self.bindCity()
+        self.bindNetworkConnection()
     }
     
-    func setNetworkMonitor() {
+    func dispatch(intent: WeatherIntent) {
+        switch intent {
+        case .loadCityWeather:
+            loadCityWeather()
+        case .searchCity:
+            state.searchPresent = true
+        }
+    }
+    
+    private func bindNetworkConnection() {
         networkMonitor.$isConnected
             .receive(on: DispatchQueue.main)
             .assign(to: \.state.networkConnect, on: self)
             .store(in: &cancellables)
     }
     
-    func dispatch(intent: WeatherIntent) {
-        switch intent {
-        case .loadCityWeather:
-            print("loadCityWeather")
-            loadCityWeather()
-            loadDaysWeather()
-        case .searchCity:
-            print("searchCity")
-            presentSearchView()
-        }
-    }
-    
-    private func nowCitySetting() {
+    private func bindCity() {
         $nowCity
               .sink { [weak self] city in
                   guard let self = self else { return }
@@ -75,7 +72,7 @@ final class WeatherViewModel: ObservableObject {
               .store(in: &cancellables)
     }
     
-    func saveUserCity(_ city: City) {
+    private func saveUserCity(_ city: City) {
         UserInfo.id = city.id
         UserInfo.city = city.name
         UserInfo.country = city.country
@@ -83,54 +80,53 @@ final class WeatherViewModel: ObservableObject {
         UserInfo.lon = city.coord.lon
     }
     
-    func loadCityWeather() {
-        Task {
-            DispatchQueue.main.async {
-                self.state.isLoading = true
-            }
-            NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
-                .receive(on: DispatchQueue.global())
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .failure(let error):
-                        print("Error loading weather: \(error.localizedDescription)")
-                    case .finished:
-                        break
+    private func loadCityWeather() {
+        self.state.isLoading = true
+        NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print("Error loading weather: \(error.localizedDescription)")
+                    DispatchQueue.main.async {
+                        self?.state.isLoading = false
                     }
-                }, receiveValue: { [weak self] weather in
+                case .finished:
+                    break
+                }
+            }, receiveValue: { [weak self] weather in
+                guard let self = self else { return }
+                DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.state.nowWeather = weather.toDomain()
-                        self.state.nowWeather.city = self.nowCity.name
-                    }
-                })
-                .store(in: &cancellables)
-        }
+                    self.state.nowWeather = weather.toDomain()
+                    self.state.nowWeather.city = self.nowCity.name
+                    
+                    self.loadDaysWeather()
+                }
+            })
+            .store(in: &cancellables)
     }
     
-    func loadDaysWeather() {
-        Task {
-            NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.day2hour3(city: self.nowCity))
-                .receive(on: DispatchQueue.global())
-                .sink(receiveCompletion: { [weak self] completion in
-                    switch completion {
-                    case .failure(let error):
-                        print("Error loading weather: \(error.localizedDescription)")
-                    case .finished:
-                        break
-                    }
-                }, receiveValue: { [weak self] weather in
-                    guard let self = self else { return }
-                    
-                    let weatherForecast = weather.toDomain()
-                    saveDaysWeather(with: weatherForecast)
-                    DispatchQueue.main.async {
-                        self.state.isLoading = false
-                    }
-                })
-                .store(in: &cancellables)
-        }
+    private func loadDaysWeather() {
+        NetworkManager.shared.weatherAPICall(model: WeatherForecastResponseDTO.self, router: WeatherRouter.day2hour3(city: self.nowCity))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print("Error loading weather: \(error.localizedDescription)")
+                    self?.state.isLoading = false
+                case .finished:
+                    break
+                }
+            }, receiveValue: { [weak self] weather in
+                guard let self = self else { return }
+                
+                let weatherForecast = weather.toDomain()
+                saveDaysWeather(with: weatherForecast)
+
+                self.state.isLoading = false
+            })
+            .store(in: &cancellables)
     }
     
     private func saveDaysWeather(with weatherForecast: [WeatherForecastModel]) {
@@ -163,7 +159,7 @@ final class WeatherViewModel: ObservableObject {
             if index == 0 {
                 day2WeatherForecast[index].date = "지금"
             } else {
-                day2WeatherForecast[index].date = convertDateFormat(input: day2WeatherForecast[index].date)
+                day2WeatherForecast[index].date = day2WeatherForecast[index].date.toFormattedTime()
             }
         }
         
@@ -189,7 +185,7 @@ final class WeatherViewModel: ObservableObject {
             if index == 0 {
                 minMaxTemperatures[index].day = "오늘"
             } else {
-                minMaxTemperatures[index].day = convertDateFormatToDay(input: minMaxTemperatures[index].day)
+                minMaxTemperatures[index].day = minMaxTemperatures[index].day.toFormattedDay()
             }
         }
         
@@ -208,34 +204,5 @@ final class WeatherViewModel: ObservableObject {
         } else {
             return minMaxWeatherInfo(temp_min: 0, temp_max: 0, weatherIcon: "", day: "")
         }
-    }
-    
-    func convertDateFormat(input: String) -> String {
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        guard let date = dateFormatter.date(from: input) else { return "" }
-
-        dateFormatter.dateFormat = "a h"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
- 
-        return "\(dateFormatter.string(from: date))시" ?? ""
-    }
-    
-    func convertDateFormatToDay(input: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-        guard let date = dateFormatter.date(from: input) else { return "" }
-
-        dateFormatter.dateFormat = "E"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-
-        return dateFormatter.string(from: date) ?? ""
-    }
-    
-    func presentSearchView() {
-        state.searchPresent = true
     }
 }
