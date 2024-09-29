@@ -27,12 +27,11 @@ struct SearchView: View {
                                 ForEach(viewModel.state.cityList, id: \.id) { city in
                                     CityCell(city: city)
                                         .onTapGesture {
-                                            print("지금 클릭한 도시 \(city.name)")
                                             weatherViewModel.nowCity = city
                                             dismiss()
                                         }
                                         .onAppear {
-                                            if city == viewModel.state.cityList.last {
+                                            if city == viewModel.state.cityList.last && viewModel.query.isEmpty {
                                                 viewModel.dispatch(intent: .loadMore)
                                             }
                                         }

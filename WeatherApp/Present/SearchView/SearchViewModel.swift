@@ -12,9 +12,8 @@ struct SearchState {
     var cityList: [City] = []
 }
 
-enum SearchIntetnt {
+enum SearchIntent {
     case loadInitCity
-    case loadAllCity
     case loadMore
     case searchCity(query: String)
 }
@@ -36,15 +35,13 @@ final class SearchViewModel: ObservableObject {
 
     init() {
         dispatch(intent: .loadInitCity)
-        searchQuerySetting()
+        bindSearchQuery()
     }
     
-    func dispatch(intent: SearchIntetnt) {
+    func dispatch(intent: SearchIntent) {
         switch intent {
         case .loadInitCity:
             loadInitCities()
-        case .loadAllCity:
-            loadAllCities()
         case .loadMore:
             loadMoreCities()
         case .searchCity(let query):
@@ -55,54 +52,41 @@ final class SearchViewModel: ObservableObject {
     
     private func loadInitCities() {
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            let cities: [City] = loadJsonData("citylist")
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.loadCityList = Array(cities.prefix(self.defaultCnt))
-                self.state.cityList = self.loadCityList
-                self.allCityList = cities
-                
-                self.dispatch(intent: .loadAllCity)
-            }
-        }
-        
-        @Sendable func loadJsonData<T: Decodable>(_ jsonFile: String) -> T {
-            let data: Data
-            
-            guard let file = Bundle.main.url(forResource: jsonFile, withExtension: "json") else {
-                fatalError("\(jsonFile).json Couldn't find in main bundle")
-            }
-            
-            do {
-                data = try Data(contentsOf: file)
-            } catch {
-                fatalError("\(jsonFile).json Couldn't load in main bundle\nError:\(error)")
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                return try decoder.decode(T.self, from: data)
-            } catch {
-                fatalError("\(jsonFile) parsing Failed\nError:\(error)")
-            }
+        Task {
+            let cities: [City] = try await loadJsonData("citylist")
 
+            self.loadCityList = Array(cities.prefix(self.defaultCnt))
+            self.state.cityList = self.loadCityList
+            self.allCityList = cities
+
+            let firstPageOfCities = Array(self.allCityList.dropFirst(self.defaultCnt))
+            
+            self.loadCityList.append(contentsOf: firstPageOfCities)
+            self.allCityList = self.loadCityList
         }
+
     }
     
-    private func loadAllCities() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
+    private func loadJsonData<T: Decodable>(_ jsonFile: String) async throws -> T {
+        let data: Data
+        
+        guard let file = Bundle.main.url(forResource: jsonFile, withExtension: "json") else {
+            fatalError("\(jsonFile).json Couldn't find in main bundle")
+        }
+        
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("\(jsonFile).json Couldn't load in main bundle\nError:\(error)")
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("\(jsonFile) parsing Failed\nError:\(error)")
+        }
 
-            let remainingCities = Array(self.allCityList.dropFirst(self.defaultCnt))
-
-                DispatchQueue.main.async {
-                    self.loadCityList.append(contentsOf: remainingCities)
-                    self.allCityList = self.loadCityList
-                }
-            }
     }
 
     private func loadMoreCities() {
@@ -127,9 +111,9 @@ final class SearchViewModel: ObservableObject {
         }
     }
     
-    private func searchQuerySetting() {
+    private func bindSearchQuery() {
         $query
-              .debounce(for: .seconds(0.5), scheduler: RunLoop.main)  // 0.5초 동안 입력이 없으면 실행
+              .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
               .removeDuplicates()
               .sink { [weak self] newQuery in
                   guard let self = self else { return }
