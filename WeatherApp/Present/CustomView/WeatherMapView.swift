@@ -16,8 +16,7 @@ struct MapViewRepresentable: UIViewRepresentable {
     /// 사용할 UIView를 생성하고, 초기화하는 메서드
     func makeUIView(context: Context) -> MKMapView {
         mapView.preferredConfiguration = MKHybridMapConfiguration()
-        mapView.isZoomEnabled = false
-        mapView.isScrollEnabled = false
+        mapView.isUserInteractionEnabled = false
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.lat, longitude: coordinate.lon), span: MKCoordinateSpan(latitudeDelta: 7.0,
                                                                                                                                                          longitudeDelta: 7.0)), animated: true)
         
@@ -34,6 +33,7 @@ struct MapViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         print("지금 좌표: \(coordinate.lon) \(coordinate.lat)")
         DispatchQueue.main.async {
+            
             uiView.removeAnnotations(uiView.annotations)
             
             let annotation = MKPointAnnotation()
