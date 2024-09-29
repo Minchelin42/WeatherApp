@@ -10,11 +10,9 @@ import SwiftUI
 struct WeatherView: View {
     
     @StateObject private var viewModel = WeatherViewModel()
-    @State private var networkMonitor = NetworkMonitor()
     
     var body: some View {
-            
-        if networkMonitor.isConnected {
+        if viewModel.state.networkConnect {
             ZStack {
                 Color.mainColor
                     .ignoresSafeArea()

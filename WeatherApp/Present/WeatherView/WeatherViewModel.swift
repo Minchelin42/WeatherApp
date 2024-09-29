@@ -14,6 +14,7 @@ struct WeatherState {
     var fiveDayWeather: [minMaxWeatherInfo] = []
     var searchPresent: Bool = false
     var isLoading: Bool = true
+    var networkConnect: Bool = true
 }
 
 struct minMaxWeatherInfo: Hashable {
@@ -34,12 +35,22 @@ final class WeatherViewModel: ObservableObject {
     
     @Published var state = WeatherState()
     @Published var nowCity: City
+    
+    private var networkMonitor = NetworkMonitor()
 
     private var cancellables = Set<AnyCancellable>()
     
-    init(initCity: City = City(id: 1839726, name: "Asan", country: "KR", coord: Coordinates(lon: 127.004173, lat: 36.783611))) {
-        self.nowCity = initCity
+    init() {
+        self.nowCity = City(id: UserInfo.id, name: UserInfo.city, country: UserInfo.country, coord: Coordinates(lon: UserInfo.lon, lat: UserInfo.lat))
         self.nowCitySetting()
+        self.setNetworkMonitor()
+    }
+    
+    func setNetworkMonitor() {
+        networkMonitor.$isConnected
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.state.networkConnect, on: self)
+            .store(in: &cancellables)
     }
     
     func dispatch(intent: WeatherIntent) {
@@ -56,16 +67,27 @@ final class WeatherViewModel: ObservableObject {
     
     private func nowCitySetting() {
         $nowCity
-              .sink { [weak self] _ in
+              .sink { [weak self] city in
                   guard let self = self else { return }
+                  self.saveUserCity(city)
                   self.dispatch(intent: .loadCityWeather)
               }
               .store(in: &cancellables)
     }
     
+    func saveUserCity(_ city: City) {
+        UserInfo.id = city.id
+        UserInfo.city = city.name
+        UserInfo.country = city.country
+        UserInfo.lat = city.coord.lat
+        UserInfo.lon = city.coord.lon
+    }
+    
     func loadCityWeather() {
         Task {
-            self.state.isLoading = true
+            DispatchQueue.main.async {
+                self.state.isLoading = true
+            }
             NetworkManager.shared.weatherAPICall(model: TodayWeatherResponseDTO.self, router: WeatherRouter.current(city: self.nowCity))
                 .receive(on: DispatchQueue.global())
                 .sink(receiveCompletion: { completion in

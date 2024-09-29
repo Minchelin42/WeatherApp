@@ -45,6 +45,8 @@
 		39FC38242CA870320024A923 /* NetworkDisconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38232CA870320024A923 /* NetworkDisconnectView.swift */; };
 		39FC38262CA8F76C0024A923 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39FC38252CA8F76C0024A923 /* .gitignore */; };
 		39FC38282CA8F7AF0024A923 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC38272CA8F7AF0024A923 /* APIKey.swift */; };
+		39FC382B2CA903600024A923 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382A2CA903600024A923 /* UserDefaultsManager.swift */; };
+		39FC382D2CA903850024A923 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC382C2CA903850024A923 /* UserInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +101,8 @@
 		39FC38232CA870320024A923 /* NetworkDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDisconnectView.swift; sourceTree = "<group>"; };
 		39FC38252CA8F76C0024A923 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39FC38272CA8F7AF0024A923 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		39FC382A2CA903600024A923 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		39FC382C2CA903850024A923 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				39FC38252CA8F76C0024A923 /* .gitignore */,
+				39FC38292CA903470024A923 /* UserDefaults */,
 				39BB39C42CA7F8B300E30F5B /* Protocol */,
 				39BB39A62CA7238E00E30F5B /* Codable */,
 				39BB39A12CA720B100E30F5B /* Network */,
@@ -285,6 +290,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		39FC38292CA903470024A923 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				39FC382A2CA903600024A923 /* UserDefaultsManager.swift */,
+				39FC382C2CA903850024A923 /* UserInfo.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,6 +380,7 @@
 			files = (
 				39BB39BB2CA7C25D00E30F5B /* TargetType.swift in Sources */,
 				39BB39BF2CA7EC0100E30F5B /* ResponseDTOType.swift in Sources */,
+				39FC382B2CA903600024A923 /* UserDefaultsManager.swift in Sources */,
 				39BB39C32CA7F87600E30F5B /* TodayWeatherModel.swift in Sources */,
 				39FC38222CA86F060024A923 /* NetworkMonitor.swift in Sources */,
 				39BB397D2CA4608E00E30F5B /* setBackgroundStyle.swift in Sources */,
@@ -396,6 +411,7 @@
 				39BB39BD2CA7C2F300E30F5B /* WeatherRouter.swift in Sources */,
 				39BB39A52CA721C900E30F5B /* City.swift in Sources */,
 				39BB39992CA6EAC600E30F5B /* Padding.swift in Sources */,
+				39FC382D2CA903850024A923 /* UserInfo.swift in Sources */,
 				39BB39C12CA7EC3400E30F5B /* TodayWeatherResponseDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
