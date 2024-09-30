@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeatherForecastModel: Hashable {
+struct WeatherForecastModel: Hashable, Equatable {
     var id = UUID()
     var temp: Int //기온
     var weatherIcon: String //날씨 이미지

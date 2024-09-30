@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct City: Codable, Equatable {
+struct City: Codable, Hashable, Equatable {
     
     var id: Int
     var name: String
@@ -16,7 +16,7 @@ struct City: Codable, Equatable {
 
 }
 
-struct Coordinates: Codable, Equatable {
+struct Coordinates: Codable, Hashable, Equatable {
     var lon: Double
     var lat: Double
 }

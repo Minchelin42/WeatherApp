@@ -18,7 +18,7 @@ struct WeatherState {
     var apiError: Bool = true
 }
 
-struct minMaxWeatherInfo: Hashable {
+struct minMaxWeatherInfo: Hashable, Equatable {
     var id = UUID()
     var temp_min: Int //기온
     var temp_max: Int //기온

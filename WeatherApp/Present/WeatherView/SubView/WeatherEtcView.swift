@@ -14,14 +14,14 @@ enum weatherEtc {
     
     func etcTitle() -> String {
         switch self {
-        case .humidity(let title, let unit), .cloud(let title, let unit), .windSpeed(let title, let unit):
+        case .humidity(let title, _), .cloud(let title, _), .windSpeed(let title, _):
             return title
         }
     }
     
     func etcInfo<T: Numeric>(value: T) -> String {
         switch self {
-        case .humidity(let title, let unit), .cloud(let title, let unit), .windSpeed(let title, let unit):
+        case .humidity(_, let unit), .cloud(_, let unit), .windSpeed(_, let unit):
             return "\(value)\(unit)"
         }
     }
