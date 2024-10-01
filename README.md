@@ -114,37 +114,45 @@ class NetworkMonitor {
 <summary>대량의 JSONData을 parsing 할 때 검색 뷰에서 UI 업데이트 시 많은 시간 소요됐던 문제 해결</summary>
 
 ```Swift
-class CustomAnnotation: NSObject, MKAnnotation {
-    
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var imageName: String?
-    
-    init(title: String, coordinate: CLLocationCoordinate2D, imageName: String) {
-        self.title = title
-        self.coordinate = coordinate
-        self.imageName = imageName
-    }
-}
-
-class PetPlaceAnnotationView: MKAnnotationView {
-    static let ReuseID = "petAnnotation"
-    
-    let customImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
-    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        clusteringIdentifier = "petPlace"
+private func loadInitCities() {
         
-        configUI()
+        Task {
+            let cities: [City] = try await loadJsonData("citylist")
+
+            self.loadCityList = Array(cities.prefix(self.defaultCnt))
+            self.state.cityList = self.loadCityList
+            self.allCityList = cities
+
+            let firstPageOfCities = Array(self.allCityList.dropFirst(self.defaultCnt))
+            
+            self.loadCityList.append(contentsOf: firstPageOfCities)
+            self.allCityList = self.loadCityList
+        }
+
+    }
+    
+    private func loadJsonData<T: Decodable>(_ jsonFile: String) async throws -> T {
+        let data: Data
+        
+        guard let file = Bundle.main.url(forResource: jsonFile, withExtension: "json") else {
+            fatalError("\(jsonFile).json Couldn't find in main bundle")
+        }
+        
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("\(jsonFile).json Couldn't load in main bundle\nError:\(error)")
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("\(jsonFile) parsing Failed\nError:\(error)")
+        }
+
     }
 
-    //configUI
-}
 
 ```
 </details>
